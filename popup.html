@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <title>Theme Creator Pro</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="popup.css">
+  <script src="jszip.min.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <h3>Tạo Theme Chrome Chuyên Nghiệp</h3>
+    <div class="header-actions">
+      <!-- Nút đổi giao diện Sáng/Tối -->
+      <span class="material-symbols-outlined icon-btn" id="themeToggleBtn" title="Đổi giao diện Sáng/Tối">light_mode</span>
+      <button id="toggleLayoutBtn">Chuyển sang Tab Dọc</button>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="panel controls-panel">
+      <!-- Vùng nội dung có thể cuộn -->
+      <div class="controls-content">
+        
+        <div class="section">
+          <h4>1. Hình ảnh (Images)</h4>
+          <div class="control-group">
+            <label>Nền Tab Mới <span class="material-symbols-outlined info-icon" title="Thuộc tính: ntp_background&#10;Hình nền cho trang Tab Mới (New Tab Page).">info</span></label>
+            <input type="file" id="img-ntp" accept="image/png, image/jpeg">
+          </div>
+          <div class="control-group">
+            <label>Khung viền <span class="material-symbols-outlined info-icon" title="Thuộc tính: theme_frame&#10;Hình nền áp dụng cho thanh tiêu đề/khung viền trình duyệt.">info</span></label>
+            <input type="file" id="img-frame" accept="image/png, image/jpeg">
+          </div>
+          <div class="control-group">
+            <label>Thanh công cụ <span class="material-symbols-outlined info-icon" title="Thuộc tính: theme_toolbar&#10;Hình nền cho thanh chứa địa chỉ URL và các nút điều hướng.">info</span></label>
+            <input type="file" id="img-toolbar" accept="image/png, image/jpeg">
+          </div>
+          <div class="control-group">
+            <label>Nền Tab ẩn <span class="material-symbols-outlined info-icon" title="Thuộc tính: theme_tab_background&#10;Hình nền cho các thẻ (tab) đang không được chọn.">info</span></label>
+            <input type="file" id="img-tab-bg" accept="image/png, image/jpeg">
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>2. Khung & Thanh công cụ</h4>
+          <div class="color-grid">
+            <div class="control-group">
+              <label>Màu viền <span class="material-symbols-outlined info-icon" title="Thuộc tính: frame&#10;Màu sắc chính của khung trình duyệt (phía sau các tab).">info</span></label>
+              <input type="color" id="c-frame">
+            </div>
+            <div class="control-group">
+              <label>Viền ẩn <span class="material-symbols-outlined info-icon" title="Thuộc tính: frame_inactive&#10;Màu khung trình duyệt khi cửa sổ không được focus (chọn).">info</span></label>
+              <input type="color" id="c-frame-inactive">
+            </div>
+            <div class="control-group">
+              <label>Nền Toolbar <span class="material-symbols-outlined info-icon" title="Thuộc tính: toolbar&#10;Màu nền của thanh công cụ, thanh bookmark và tab đang mở.">info</span></label>
+              <input type="color" id="c-toolbar">
+            </div>
+            <div class="control-group">
+              <label>Màu Icon <span class="material-symbols-outlined info-icon" title="Thuộc tính: toolbar_button_icon&#10;Màu của các biểu tượng (Back, Forward, Home, Menu...) trên thanh công cụ.">info</span></label>
+              <input type="color" id="c-toolbar-icon">
+            </div>
+            <div class="control-group">
+              <label>Nút bấm <span class="material-symbols-outlined info-icon" title="Thuộc tính: tints.buttons&#10;Hệ màu Tint (HSL) dùng để đổ bóng/phối màu cho các nút bấm trạng thái (hover, active).">info</span></label>
+              <input type="color" id="c-tints-buttons">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>3. Thanh địa chỉ (Omnibox)</h4>
+          <div class="color-grid">
+            <div class="control-group">
+              <label>Nền <span class="material-symbols-outlined info-icon" title="Thuộc tính: omnibox_background&#10;Màu nền của thanh nhập địa chỉ URL.">info</span></label>
+              <input type="color" id="c-omnibox-bg">
+            </div>
+            <div class="control-group">
+              <label>Chữ <span class="material-symbols-outlined info-icon" title="Thuộc tính: omnibox_text&#10;Màu chữ của đường link bạn gõ vào thanh địa chỉ.">info</span></label>
+              <input type="color" id="c-omnibox-text">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>4. Tabs & Bookmarks</h4>
+          <div class="color-grid">
+            <div class="control-group">
+              <label>Chữ Tab hiện tại <span class="material-symbols-outlined info-icon" title="Thuộc tính: tab_text&#10;Màu chữ của tab đang được mở.">info</span></label>
+              <input type="color" id="c-tab-text">
+            </div>
+            <div class="control-group">
+              <label>Chữ Tab ẩn <span class="material-symbols-outlined info-icon" title="Thuộc tính: tab_background_text&#10;Màu chữ của các tab đang đóng/ẩn.">info</span></label>
+              <input type="color" id="c-tab-bg-text">
+            </div>
+            <div class="control-group">
+              <label>Chữ Bookmark <span class="material-symbols-outlined info-icon" title="Thuộc tính: bookmark_text&#10;Màu chữ của các trang web bạn đã lưu trên thanh Dấu trang.">info</span></label>
+              <input type="color" id="c-bookmark-text">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>5. Trang Tab Mới (NTP)</h4>
+          <div class="color-grid">
+            <div class="control-group">
+              <label>Nền NTP <span class="material-symbols-outlined info-icon" title="Thuộc tính: ntp_background&#10;Màu nền mặc định của trang Tab Mới (khi không dùng ảnh).">info</span></label>
+              <input type="color" id="c-ntp-bg">
+            </div>
+            <div class="control-group">
+              <label>Chữ NTP <span class="material-symbols-outlined info-icon" title="Thuộc tính: ntp_text&#10;Màu chữ hiển thị trên trang Tab Mới.">info</span></label>
+              <input type="color" id="c-ntp-text">
+            </div>
+            <div class="control-group">
+              <label>Link NTP <span class="material-symbols-outlined info-icon" title="Thuộc tính: ntp_link&#10;Màu của các đường link liên kết trên trang Tab Mới.">info</span></label>
+              <input type="color" id="c-ntp-link">
+            </div>
+            <div class="control-group">
+              <label>Mảng (Section) <span class="material-symbols-outlined info-icon" title="Thuộc tính: ntp_section&#10;Màu nền của các khối/khu vực thông tin phụ (như footer hoặc các mảng ứng dụng) trên trang Tab Mới.">info</span></label>
+              <input type="color" id="c-ntp-section">
+            </div>
+          </div>
+        </div>
+      </div> <!-- Kết thúc vùng cuộn -->
+      
+      <!-- Nút bấm đặt bên ngoài vùng cuộn, nằm ở dưới cùng -->
+      <button id="generateBtn" class="primary-btn">Tải xuống Theme (.zip)</button>
+    </div>
+
+    <!-- Khu vực Xem trước (Mockup) -->
+    <div class="panel preview-panel">
+      <div class="mockup-wrapper">
+        <div id="browser-preview-horizontal" class="browser-mockup horizontal layout-active">
+          <div class="mockup-frame">
+            <div class="mockup-tabs">
+              <div class="mockup-tab inactive"><span class="material-symbols-outlined icon-small">public</span> Thẻ Khác
+              </div>
+              <div class="mockup-tab active"><span class="material-symbols-outlined icon-small">public</span> Thẻ Hiện
+                Tại <span class="material-symbols-outlined icon-close">close</span></div>
+              <span class="material-symbols-outlined icon-add">add</span>
+            </div>
+          </div>
+          <div class="mockup-toolbar">
+            <span class="material-symbols-outlined icon-btn toolbar-icon">arrow_back</span>
+            <span class="material-symbols-outlined icon-btn toolbar-icon">arrow_forward</span>
+            <span class="material-symbols-outlined icon-btn toolbar-icon">refresh</span>
+            <div class="mockup-omnibox">
+              <span class="material-symbols-outlined icon-small omni-icon">lock</span>
+              <span class="url-text">https://google.com</span>
+            </div>
+            <span class="material-symbols-outlined icon-btn toolbar-icon">account_circle</span>
+            <span class="material-symbols-outlined icon-btn toolbar-icon">more_vert</span>
+          </div>
+          <div class="mockup-bookmarks">
+            <span><span class="material-symbols-outlined icon-small">folder</span> Bookmark 1</span>
+            <span><span class="material-symbols-outlined icon-small">folder</span> Bookmark 2</span>
+          </div>
+          <div class="mockup-ntp">
+            <div class="ntp-google">Google</div>
+            <div class="ntp-search">
+              <span class="material-symbols-outlined">search</span>
+              <span>Hỏi Google</span>
+              <span class="material-symbols-outlined">mic</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="browser-preview-vertical" class="browser-mockup vertical">
+          <div class="mockup-sidebar">
+            <div class="sidebar-header">
+              <span class="material-symbols-outlined icon-btn">left_panel_close</span>
+              <span class="material-symbols-outlined icon-btn">search</span>
+            </div>
+            <div class="sidebar-tabs">
+              <div class="mockup-tab inactive"><span class="material-symbols-outlined icon-small">public</span> Thẻ Khác
+              </div>
+              <div class="mockup-tab active"><span class="material-symbols-outlined icon-small">public</span> Thẻ Hiện
+                Tại</div>
+            </div>
+          </div>
+          <div class="mockup-main-content">
+            <div class="mockup-toolbar">
+              <span class="material-symbols-outlined icon-btn toolbar-icon">left_panel_open</span>
+              <span class="material-symbols-outlined icon-btn toolbar-icon">arrow_back</span>
+              <span class="material-symbols-outlined icon-btn toolbar-icon">refresh</span>
+              <div class="mockup-omnibox">
+                <span class="material-symbols-outlined icon-small omni-icon">lock</span>
+                <span class="url-text">https://google.com</span>
+              </div>
+            </div>
+            <div class="mockup-bookmarks">
+              <span><span class="material-symbols-outlined icon-small">folder</span> Bookmark 1</span>
+            </div>
+            <div class="mockup-ntp">
+              <div class="ntp-google">Google</div>
+              <div class="ntp-search"><span class="material-symbols-outlined">search</span> Hỏi Google</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>

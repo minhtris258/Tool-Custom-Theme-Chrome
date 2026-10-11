@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Chrome Theme Creator Pro",
+  "version": "2.0",
+  "description": "Tạo theme Chrome chuyên nghiệp, hỗ trợ ảnh nền và giả lập tab dọc/ngang.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Mở trình tạo Theme"
+  },
+  "permissions": [
+    "downloads"
+  ]
+}
